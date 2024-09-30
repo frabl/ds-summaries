@@ -103,7 +103,7 @@ compare all users of target-item
 
 - pearson correlation is identical to mean-centered cosine-similarity
 - $\mathbf u$ = ratings vector for user $u$
-- $w_{uv} = \cos(\mathbf{u},\mathbf{v})=\frac{\langle\mathbf{u},\mathbf{v}\rangle}{\|\mathbf{u}\|\cdot\|\mathbf{v}\|} = \frac{\sum_{i=1}^n u_i v_i}{\sqrt{\sum_{i=1}^n u_i^2}\cdot\sqrt{\sum_{i=1}^n v_i^2}}\end{aligned}$
+- $w_{uv} = \cos(\mathbf{u},\mathbf{v})=\frac{\langle\mathbf{u},\mathbf{v}\rangle}{\|\mathbf{u}\|\cdot\|\mathbf{v}\|} = \frac{\sum_{i=1}^n u_i v_i}{\sqrt{\sum_{i=1}^n u_i^2}\cdot\sqrt{\sum_{i=1}^n v_i^2}}$
 
 *runtime optimization*
 
@@ -138,16 +138,16 @@ compare all items of target-user
 - **non personalized**:
 	- average rating of all items, by target-user
 	- $I_u=\{i\in I \mid r_{ui}\in R\}$
-	- $\begin{aligned}s(u,i)=\frac{\sum_{j\in I_u}r_{uj}}{{\color{violet}|I_u|}}\end{aligned}$
+	- $s(u,i)=\frac{\sum_{j\in I_u}r_{uj}}{{\color{violet}|I_u|}}$
 - **neighborhood:**
 	- weights $w_{ij}$ for how similar items rated by target-user are to the target-item we want to predict the rating of
-	- $\begin{aligned}s(u,i)=\overline{r_i}+\frac{\sum_{j\in N(i)}w_{ij}(r_{uj}-\overline{r_j})}{\sum_{j\in N(i)}|w_{ij}|}\end{aligned}$
+	- $s(u,i)=\overline{r_i}+\frac{\sum_{j\in N(i)}w_{ij}(r_{uj}-\overline{r_j})}{\sum_{j\in N(i)}|w_{ij}|}$
 
 *item similarity: pearson correlation*
 
 - items are similar, if they get rated by users similarly
 - $U_i=\{u\in U|r_{ui}\in R\}$
-- $\begin{aligned}w_{ij}&=\frac{\sum_{u\in U_i\cap U_j}(r_{ui}-\overline{r_i})\cdot (r_{uj}-\overline{r_j})}{\sqrt{\sum_{u\in U_i}(r_{ui}-\overline{r_i})^2}\cdot\sqrt{\sum_{u\in U_j}(r_{uj}-\overline{r_j})^2} }\end{aligned}$
+- $w_{ij}&=\frac{\sum_{u\in U_i\cap U_j}(r_{ui}-\overline{r_i})\cdot (r_{uj}-\overline{r_j})}{\sqrt{\sum_{u\in U_i}(r_{ui}-\overline{r_i})^2}\cdot\sqrt{\sum_{u\in U_j}(r_{uj}-\overline{r_j})^2} }$
 
 *runtime optimization*
 
@@ -405,7 +405,7 @@ we can use the rating of a user to create a user-profile-vector that we then com
 	- $R = TP/(TP+FN)$
 	- completeness = not leaving out any relevant items
 - F1
-	- $\small \begin{aligned}F_1=2\cdot\frac{P\cdot R}{P+R}=\frac2{\frac1P+\frac1R}\end{aligned}$
+	- $\small F_1=2\cdot\frac{P\cdot R}{P+R}=\frac2{\frac1P+\frac1R}$
 	- harmonic mean of precision and recall
 
 *ranking accuracy*
@@ -426,12 +426,12 @@ graded labels (rel scores)
 
 - discounted cumulative gain DCG:
 	- intuition: relevance score / logarithm of absolute position for each item
-	- $\begin{aligned}DCG(D)=\sum_{j=1}^k\frac{r_{u,i_j}}{\log(j+1)}\end{aligned}$
+	- $DCG(D)=\sum_{j=1}^k\frac{r_{u,i_j}}{\log(j+1)}$
 	- $j$ = absolute position in ranking
 	- discounted relevance means it normalizes score based on rank
 - normalized discounted cumulative gain nDCG:
 	- intuition: current dcg divided by the dcg of correctly sorted rel-docs
-	- $\begin{aligned}nDCG(Q)=\frac1{|Q|}\sum_{q\in Q}\frac{DCG(q)}{DCG(\mathrm{sorted}(rel(q))}\end{aligned}$
+	- $nDCG(Q)=\frac1{|Q|}\sum_{q\in Q}\frac{DCG(q)}{DCG(\mathrm{sorted}(rel(q))}$
 	- normalizes dcg again by best possible ranking per query $DCG(\mathrm{sorted}(rel(q))$ / ideal dcg IDCG - meaning the docs being in the correct order based on their relevance for the given query
 
 *k-fold cross validation (before evaluation)*
@@ -499,12 +499,12 @@ graded labels (rel scores)
 - treat each session like a user
 - **user-user cf**:
 	- = session-based kNN
-	- $\begin{aligned}\hat{r}(s,i)=\sum_{s^{\prime}\in N(s)}w_{s,s^{\prime}}\cdot \mathbb 1{(i\in s^{\prime})}\end{aligned}$
+	- $\hat{r}(s,i)=\sum_{s^{\prime}\in N(s)}w_{s,s^{\prime}}\cdot \mathbb 1{(i\in s^{\prime})}$
 	- $N(s)$ = neighborhood of current session
 	- $w_{s,s'}$ = session-session similarity
 	- $\mathbb 1{(i\in s^{\prime})}$ = neighbors that contain target item
 - **item-item cf**:
-	- $\begin{aligned}\hat{r}(s,i)=\sum_{j\in s}w_{ij}\end{aligned}$
+	- $\hat{r}(s,i)=\sum_{j\in s}w_{ij}$
 	- sum of similarities of all current session items
 	- $w_{i,j}$ = item-item similarity
 - **matrix factorization**:
