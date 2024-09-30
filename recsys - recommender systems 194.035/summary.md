@@ -85,11 +85,11 @@ compare all users of target-item
 	- $s(u,i)=\frac{\sum_{v\in U} {\color{violet}{w_{uv}}} \cdot r_{vi}}{\sum_{v\in U} |{\color{violet}{w_{uv}}}|}$
 - **unbiased**:
 	- mean-centering, since ie. a 10/10 can be interpreted differently
-	- $\begin{aligned} s(u,i)={\color{violet}\overline{r_u}}+\frac{\sum_{v\in U}w_{uv} \cdot {\color{violet}(r_{vi}- \overline{r_v})}}{\sum_{v\in U}|w_{uv}|} \end{aligned}$
+	- $s(u,i)={\color{violet}\overline{r_u}}+\frac{\sum_{v\in U}w_{uv} \cdot {\color{violet}(r_{vi}- \overline{r_v})}}{\sum_{v\in U}|w_{uv}|}$
 - **neighborhood:**
 	- only consider subset of all users
 	- subset of users with some level of similarity to reduce noise in rating
-	- $\begin{aligned} s(u,i)=\overline{r_u}+\frac{\sum_{v\in {{\color{violet} N(u)}} }w_{uv} \cdot (r_{vi}- \overline{r_v})}{\sum_{v\in {{\color{violet} N(u)}}}|w_{uv}|} \end{aligned}$
+	- $s(u,i)=\overline{r_u}+\frac{\sum_{v\in {{\color{violet} N(u)}} }w_{uv} \cdot (r_{vi}- \overline{r_v})}{\sum_{v\in {{\color{violet} N(u)}}}|w_{uv}|}$
 
 *user similarity: pearson correlation pcc*
 
@@ -97,13 +97,13 @@ compare all users of target-item
 - mean centered, -1;1 normalized, sum of mutual ratings
 - note: if you just iterate over mutually rated items, then users who have just 1 common item, are understood as identical. there are ways to fix this.
 - $I_{u}=\{i\in I \mid r_{ui}\in R\}$
-- $\begin{aligned} w_{uv}=\frac{\sum_{i\in I_u\cap I_v}(r_{ui}-\overline{r_u}) \cdot (r_{vi}-\overline{r_v})}{\sqrt{\sum_{i\in I_u}(r_{ui}-\overline{r_u})^2} \cdot \sqrt{\sum_{i\in I_v}(r_{vi}-\overline{r_v})^2}} \end{aligned}$
+- $w_{uv}=\frac{\sum_{i\in I_u\cap I_v}(r_{ui}-\overline{r_u}) \cdot (r_{vi}-\overline{r_v})}{\sqrt{\sum_{i\in I_u}(r_{ui}-\overline{r_u})^2} \cdot \sqrt{\sum_{i\in I_v}(r_{vi}-\overline{r_v})^2}}$
 
 *user similarity: cosine similarity*
 
 - pearson correlation is identical to mean-centered cosine-similarity
 - $\mathbf u$ = ratings vector for user $u$
-- $\begin{aligned} w_{uv} = \cos(\mathbf{u},\mathbf{v})=\frac{\langle\mathbf{u},\mathbf{v}\rangle}{\|\mathbf{u}\|\cdot\|\mathbf{v}\|} = \frac{\sum_{i=1}^n u_i v_i}{\sqrt{\sum_{i=1}^n u_i^2}\cdot\sqrt{\sum_{i=1}^n v_i^2}}\end{aligned}$
+- $w_{uv} = \cos(\mathbf{u},\mathbf{v})=\frac{\langle\mathbf{u},\mathbf{v}\rangle}{\|\mathbf{u}\|\cdot\|\mathbf{v}\|} = \frac{\sum_{i=1}^n u_i v_i}{\sqrt{\sum_{i=1}^n u_i^2}\cdot\sqrt{\sum_{i=1}^n v_i^2}}\end{aligned}$
 
 *runtime optimization*
 
