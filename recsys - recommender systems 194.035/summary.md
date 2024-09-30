@@ -77,12 +77,12 @@ compare all users of target-item
 
 - **non personalized**:
 	- average rating of item, by all users (that have rated the item)
-	- $\begin{aligned}U_i=\{u\in U|r_{ui}\in R\}\end{aligned}$
-	- $\begin{aligned}s(u,i)=\frac{\sum_{v\in U_i}r_{vi}}{|U_i|}\end{aligned}$
+	- U_i=\{u\in U|r_{ui}\in R\}
+	- $s(u,i)=\frac{\sum_{v\in U_i}r_{vi}}{|U_i|}$
 - **weighted by similarity**:
 	- weigh more similar users heigher
 	- $w_{uv} \in [\text-1, 1]$
-	- $\begin{aligned}s(u,i)=\frac{\sum_{v\in U} {\color{violet}{w_{uv}}} \cdot r_{vi}}{\sum_{v\in U} |{\color{violet}{w_{uv}}}|}\end{aligned}$
+	- $s(u,i)=\frac{\sum_{v\in U} {\color{violet}{w_{uv}}} \cdot r_{vi}}{\sum_{v\in U} |{\color{violet}{w_{uv}}}|}$
 - **unbiased**:
 	- mean-centering, since ie. a 10/10 can be interpreted differently
 	- $\begin{aligned} s(u,i)={\color{violet}\overline{r_u}}+\frac{\sum_{v\in U}w_{uv} \cdot {\color{violet}(r_{vi}- \overline{r_v})}}{\sum_{v\in U}|w_{uv}|} \end{aligned}$
