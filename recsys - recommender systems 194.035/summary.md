@@ -147,7 +147,7 @@ compare all items of target-user
 
 - items are similar, if they get rated by users similarly
 - $U_i=\{u\in U|r_{ui}\in R\}$
-- $w_{ij}&=\frac{\sum_{u\in U_i\cap U_j}(r_{ui}-\overline{r_i})\cdot (r_{uj}-\overline{r_j})}{\sqrt{\sum_{u\in U_i}(r_{ui}-\overline{r_i})^2}\cdot\sqrt{\sum_{u\in U_j}(r_{uj}-\overline{r_j})^2} }$
+- $$w_{ij} = \frac{\sum_{u\in U_i\cap U_j}(r_{ui}-\overline{r_i})\cdot (r_{uj}-\overline{r_j})}{\sqrt{\sum_{u\in U_i}(r_{ui}-\overline{r_i})^2}\cdot\sqrt{\sum_{u\in U_j}(r_{uj}-\overline{r_j})^2}}$$
 
 *runtime optimization*
 
