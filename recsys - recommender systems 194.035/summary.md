@@ -282,7 +282,7 @@ improves ranking of implicit-feedback through **pair-wise learning** (instead of
 *factorization-machines*
 
 - higher-order linear-regression to learn weights and feature embeddings:
-	- $\hat{r}_{ui}=\underbracket{\mu}_{(0)}+    \underbracket{\sum_p {\color{violet}w_p} \cdot x_p^{ui}}_{(1)} +      \underbracket{\sum_p\sum_{p^{\prime}\neq p} {\color{violet} w_{pp^{\prime}}  }\cdot x_p^{ui} \cdot x_{p^{\prime}}^{ui}}_{(2)}$
+	- $\hat{r}_{ui}=\underbracket{\mu}_{(0)} + \underbracket{\sum_p {\color{violet} w_p} \cdot x_p^{ui}}_{(1)} + \underbracket{\sum_p \sum_{p^{\prime} \neq p} {\color{violet} w_{pp^{\prime}} } \cdot x_p^{ui} \cdot x_{p^{\prime}}^{ui}}_{(2)}$
 - where:
 	- $x^{ui} \in X$ = embedding of all features (not just user, item but also timestamps etc.)
 	- 0th order: $\mu$
