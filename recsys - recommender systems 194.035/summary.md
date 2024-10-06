@@ -289,7 +289,7 @@ improves ranking of implicit-feedback through **pair-wise learning** (instead of
 		- = bias, global average rating
 	- 1st order: ${\color{violet}w_p}$
 		- = weight to be learned for each feature $p$
-	- 2nd order :$w_{pp^{\prime}}= \color{violet}v_p^\intercal v_{p^{\prime}}$
+	- 2nd order : $w_{pp^{\prime}} = {\color{violet} v_p^\intercal v_{p^{\prime}}}$
 		- = interdependence weight to be learned for each pair of features $p,~p'$ 
 		- would take too long to learn, use dot product of feature embeddings $v_p$ instead (factorization)
 		- $v_p$ has $k$ dimensions
@@ -308,13 +308,13 @@ improves ranking of implicit-feedback through **pair-wise learning** (instead of
 idea: learning something similar to the item-weights we multiplied to each user-rating in ii-cf
 
 - assuming that weights are normalized, the prediction can be
-	- $\hat{r}_{ui}=\sum_jw_{ij} \cdot r_{uj}$
+	- $\hat{r}_{ui} = \sum_j w_{ij} \cdot r_{uj}$
 	- $\hat R = RW$
 - we can learn the weight by factorizing it
 	- $W = Q^T T$
 	- $\hat R = RQ^\intercal Y$
 - therefore
-	- $\hat{r}_{ui}= \sum_j r_{uj} \cdot q_i^T \cdot y_j = \underbracket{{  q_i^T}}_{\mathclap{\text{item}}} \cdot \underbracket{\sum_j r_{uj} \cdot { y_j}}_{\mathclap{\text{user}}}$
+	- $\hat{r}_{ui} = \sum_j r_{uj} \cdot q_i^T \cdot y_j = \underbracket{q_i^T}_{\mathclap{\text{item}}} \cdot \underbracket{\sum_j r_{uj} \cdot y_j}_{\mathclap{\text{user}}}$
 
 # neural networks
 
@@ -369,7 +369,7 @@ sparse representation of document as vector (traditional way)
 
 *similarity-weighted-average*
 
-- $\begin{gathered}\hat{r}_{uq}=\frac{\sum_{d\in N(q;u)}\cos(q,d)\cdot r_{ud}}{\sum_{d\in N(q;u)}\cos(q,d)}\end{gathered}$
+- $\hat{r}_{uq} = \frac{\sum_{d \in N(q; u)} \cos(q, d) \cdot r_{ud}}{\sum_{d \in N(q; u)} \cos(q, d)}$
 - finding neighborhood $N(q)$:
 	- compare tf-idf of item from user-history $d_i$ (document) to target-item $q_i$ (query) through $\cos(\mathbf{q},\mathbf{d})$
 
@@ -381,7 +381,7 @@ we can use the rating of a user to create a user-profile-vector that we then com
 - see: https://en.wikipedia.org/wiki/Rocchio_algorithm
 - i. split feedback history in rel-docs $D^+$ or non-rel-docs $D^-$
 - ii. compute user-profile-vector:
-	- $u=\alpha\cdot \underbracket{u_0}+~\beta \cdot \underbracket{\frac1{|D^+|}\sum_{d^+\in D^+}d^+}-~\gamma\cdot{\underbracket{\frac1{|D^-|}\sum_{d^-\in D^-}d^-}}$
+	- $u = \alpha \cdot \underbracket{u_0} + \beta \cdot \underbracket{\frac{1}{|D^+|} \sum_{d^+ \in D^+} d^+} - \gamma \cdot \underbracket{\frac{1}{|D^-|} \sum_{d^- \in D^-} d^-}$
 	- where $u_0$ is some baseline vector for bias
 
 # evaluation metrics
